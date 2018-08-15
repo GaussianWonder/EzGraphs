@@ -1,0 +1,27 @@
+﻿     Dupa ce ai selectat una dintre optiunile dispuse sub forma de cerc, ai urmatoarele posibilitati:
+          ->ADD POINT:
+            ---------
+               ->da click pe ecran pentru a adauga un nou nod;
+
+          ->ADD EDGE:
+            --------
+               ->selecteaza doua noduri pentru a creea un arc de la primul nod selectat la al doilea;
+               ->nodul selectat va aparea rosu, mai apasa o data pentru a anula selectia;
+
+          ->DELETE POINT:
+            ------------
+               ->da click pe un nod pentru a-l sterge;
+               ->ATENTIE! vor disparea si arcele incidente cu acesta;
+
+          ->DELETE EDGE:
+            -----------
+               ->da click pe un arc (devine rosu) pentru a il sterge;
+               ->ATENTIE! daca intre doua noduri exista ambele arce, se vor sterge amandoua;
+
+          ->MOVE:
+            ----
+              ->tine apasat pe un nod si muta cursorul pentru a muta nodul
+
+          ->DELETE GRAPH:
+            ------------
+              ->apasa pe buton si va sterge graful (arce si noduri).

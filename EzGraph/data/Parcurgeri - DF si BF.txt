@@ -1,0 +1,83 @@
+﻿     Prin parcurgerea unui graf neorientat se intelege examinarea sistematica a nodurilor sale, plecand dintr-un varf dat i astfel incat fiecare nod accesibil din i pe muchii incidente doua cate doua sa fie atins o singura data.
+          -> spunem ca vizitam varful respectiv, scopul acestei vizitari fiind acela de a prelucra informatia asociata varfului.
+
+     I. PARCURGEREA BF (BREADTH FIRST) -> in latime
+        -----------------------------
+          -> se viziteaza varful initial i, apoi toti vecinii acestuia, apoi vecinii nevizitati ai acestora s.a.m.d.
+          -> Structuri de date folosite:
+               -> matricea de adiacenta a grafului
+               -> vectorul viz cu n elemente:
+                    -> viz[i] = 1, daca varful i a fost vizitat
+                                0, altfel
+               -> o coada (vector) cu n elemente
+                    -> prelucrarea unui varf v aflat la inceputul cozii consta in adaugarea la sfarsitul cozii a tuturor varfurilor i vecine cu v nezivitate inca.
+          -> Complexitate: O(n^2).
+
+        ------------------------------------------
+        | int n,m,a[105][105],viz[105],c[105];
+        |   //a[n][n] - matrice de adiacenta
+        |   //c[n] - coada
+        | void bf(int i) {
+        |     int p=1,u=1,v,j;
+        |     c[p]=i;
+        |     viz[i]=1;
+        |     while (p<=u) {
+        |         v=c[p];
+        |         for (j=1;j<=n;j++)
+        |             if (a[v][j] && !viz[j]) {
+        |                 c[++u]=j;
+        |                 viz[j]=1;
+        |             }
+        |         p++;
+        |     }
+        |     for (j=1;j<=u;j++)
+        |         g<<c[j]<<' '; //afisarea nodurilor
+        | }
+        ------------------------------------------
+
+
+     II. PARCURGEREA DF (DEPTH FIRST) -> in adancime
+         --------------------------
+          -> se pleaca din varful i, se viziteaza primul vecin al sau, apoi primul vecin nevizitat al acestuia etc, deci se merge "in adancime" ori de cate ori se poate
+          -> daca un nod nu mai are vecini nevizitati, se revine in tatal lui si se cauta primul vecin nevizitat al acestuia
+          -> Structuri de date folosite:
+               -> matricea de adiacenta a grafului
+               -> vectorul viz cu n elemente:
+                    -> viz[i] = 1, daca varful i a fost vizitat
+                                0, altfel
+          -> Complexitate: O(n^2).
+
+        ------------------------------------------
+        | int n,m,x,viz[105],a[105][105];
+        |   //a[n][n] - matrice de adiacenta
+        | void df(int k) {
+        |     int i;
+        |     g<<k<<' '; //afisarea nodului curent
+        |     viz[k]=1;
+        |     for (i=1;i<=n;i++)
+        |         if (!viz[i] && a[k][i])
+        |             df(i); //autoapel pentru primul vecin al lui k nevizitat
+        | }
+        ------------------------------------------
+
+++ex
+8
+930 180
+800 280
+1075 430
+930 290
+1260 260
+1110 290
+1280 405
+885 445
+10
+1 2
+2 4
+1 4
+1 6
+4 6
+5 6
+5 7
+3 6
+3 4
+4 8

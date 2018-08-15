@@ -1,0 +1,46 @@
+     Arce INCIDETE = arce care au o extremitate comuna.
+
+     GRADUL unui varf x poate sa fie:
+          ->EXTERIOR = numarul arcelor ce ies din nodul x de forma (x,y)
+              ->se noteaza cu d+(x)
+          ->INTERIOR = numarul arcelor ce intra in nodul x de forma (y,x)
+              ->se noteaza cu d-(x)
+	
+             ----------------------
+            | int n,a[105][105],d[105];
+            |   //se da matricea de adiacenta a
+            |   //d1 - vector de grade exterioara (+)
+            |   //d2 - vector de grade interioare (-)
+            | void grad() {
+            |     int i,j;
+            |     for (i=1;i<=n;i++)
+            |         for (j=1;j<=n;j++)
+            |             if (a[i][j]==1) {
+            |                 d1[i]++;
+            |                 d2[j]++;
+            |             }
+            | }
+             ----------------------
+
+     Varf IZOLAT x = un varf care are gradelul interior si exterior 0 (d-(x)=d+(x)=0).
+
+     Graf COMPLET = graf cu toate varfurile adiacente.
+          ->numarul de grafuri orientate cu n varfuri = 3^(n*(n-1)/2).
+
+     Numarul de grafuri orientate cu n varfuri = 4^(n*(n-1)/2).
+
+++ex
+7
+830 240
+1020 200
+880 350
+1100 360
+990 440
+1230 230
+1200 440
+5
+1 2
+2 3
+3 1
+2 4
+4 5

@@ -1,0 +1,11 @@
+int a[105][105],n,m;
+  /* se creeaza intai a - matricea de adiacenta
+    care va deveni matricea drumurilor */
+void r-w() {
+    int i,j,k;
+    for (k=1;k<=n;k++)
+        for (i=1;i<=n;i++)
+            for (j=1;j<=n;j++)
+                if (a[i][j]==0)
+                    a[i][j]=a[i][k]*a[k][j];
+}

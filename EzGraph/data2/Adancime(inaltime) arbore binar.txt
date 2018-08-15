@@ -1,0 +1,7 @@
+int rad,st[105],dr[105];
+  //se dau vectorii st si dr
+int h(int r) {
+    if (!r) return 0;
+    else return max(h(st[r]),h(dr[r]))+1;
+}
+  //apel: h(rad);

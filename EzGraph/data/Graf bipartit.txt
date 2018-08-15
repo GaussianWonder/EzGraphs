@@ -1,0 +1,42 @@
+﻿     Graf BIPARTIT = graf G=(X,U) ale carui noduri pot fi impartite in doua multimi disjuncte A si B astfel incat fiecare muchie sa aiba o extremitate in A si cealalta in B.
+          -> exista doua multimi nevide A si B astfel incat multimea de varfuri X = A U B, A si B sunt multimi disjuncte si oricare muchie are o extemitae in A si cealalta in B
+
+     Graf BIPARTIT COMPLET = graf bipartit astfel incat pentru oricare varf x din A si oricare varf y din B, exista muchia [x, y].
+          -> card(U) = p*q = m, unde p=card(A) si q = card(B).
+
+             ----------------------
+            | int n,m,xm[105],ok=1,a[105][105];
+            | void bipartit(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (a[k][i]==1)
+            |             if (xm[i]==0) {
+            |                 xm[i]=-xm[k];
+            |                 bipartit(i);
+            |             }
+            |             else if (xm[i]==xm[k]) {
+            |                 ok=0;
+            |                 break;
+            |             }
+            | }
+            |   //in main(): xm[1]=1;
+            |   //apel: bipartit(1);
+             ----------------------
+
+++ex
+7
+920 215
+920 310
+920 405
+1100 262
+1100 357
+1100 450
+1100 180
+7
+1 7
+1 4
+1 5
+2 7
+2 4
+3 5
+3 6

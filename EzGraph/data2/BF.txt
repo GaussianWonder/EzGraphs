@@ -1,0 +1,18 @@
+int n,m,k,a[105][105],viz[105],c[105];
+
+void bf(int i) {
+    int p=1,u=1,v,j;
+    c[p]=i;
+    viz[i]=1;
+    while (p<=u) {
+        v=c[p];
+        for (j=1;j<=n;j++)
+            if (a[v][j] && !viz[j]) {
+                c[++u]=j;
+                viz[j]=1;
+            }
+        p++;
+    }
+    for (j=1;j<=u;j++)
+        g<<c[j]<<' ';
+}

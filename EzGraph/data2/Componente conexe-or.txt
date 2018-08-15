@@ -1,0 +1,29 @@
+int n,m,viz[105],a[105][105];
+
+void df(int k,int nr) {
+    int i;
+    viz[k]=nr;
+    for (i=1;i<=n;i++)
+        if (!viz[i] && a[k][i]) //nu e vizitat si formeaza arcul (k,i)
+            df(i, nr);
+}
+
+void compConexe() {
+    int nr=0,x,y,i;
+    f>>n;
+    while (f>>x>>y2)
+        a[x][y]=1;
+    for (i=1;i<=n;i++) {
+        if (!viz[i]) {
+            nr++;
+            df(i,nr); //reluam parcurgerea pt fiecare nod nevizitat
+        }
+    }
+    g<<nr<<'\n';
+    for (i=1;i<=nr;i++) {
+        for(j=1;j<=n;j++)
+            if (viz[j]==i)
+                g<<j<<' ';
+        g<<'\n';
+    }
+}

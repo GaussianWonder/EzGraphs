@@ -1,0 +1,13 @@
+          CUPRINS
+
+          I. GRAFURI NEORIENTATE
+               1. Complet
+               2. Bipartit
+               3. Eulerian
+               4. Hamiltonian
+               5. Arbori
+                    a) Cu Radacina/Arborescente
+                    b) Binari
+          II. GRAFURI ORIENTATE
+               1. Complet
+               2. Turneu

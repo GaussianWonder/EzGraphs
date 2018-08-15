@@ -1,0 +1,136 @@
+     I. MATRICE DE ADIACENTA
+        --------------------
+          Matricea A de adiacenta a unui graf G = (X,U) este o matrice patratica de dimensiune N (N = |X|) definita astfel:
+               A[i][j] = 1, daca exista arcul (i, j)
+                         0, altfel.
+
+          Observatii:
+               -> d+(i) = suma de pe linia i
+               -> d-(i) = suma de pe coloana i
+               -> suma(d+(i)) = suma(d-(i)) = numar arce
+               -> i = varf izolat <=> linia i si coloana i au toate elementele 0.
+
+              -------------------------
+              | int n,m,a[101][101];
+              |   /*matricea a[n][n] de adiacenta este declarata
+              |     global, deci este initializata cu 0*/
+              | void creareMatAd() {
+              |     int i,j,x,y;
+              |         f>>n>>m;
+              |         for (i=1;i<=m;i++) {
+              |             f>>x>>y; //se citesc m perechi (arcele)
+              |             a[x][y]=1;
+              |         }
+              | }
+              -------------------------
+
+     II. LISTA DE ADIACENTA
+         ------------------
+          ->se specifica pentru fiecare varf i lista vecinilor/succesorilor sai
+
+              -------------------------
+              | int n;
+              | struct nod {
+              |     int inf; //informatia utila din nod
+              |     nod *urm;
+              | }*a[105];
+              | 
+              | void adaug(nod *&p,int x) {  //adaug nodul x la lista p
+              |     nod *c;
+              |     c=new nod;
+              |     c->inf=x;
+              |     c->urm=p;
+              |     p=c;
+              | }
+              | 
+              | void citire() {
+              |     int x,y;
+              |     f>>n;
+              |     while (f>>x>>y)
+              |         adaug(a[x],y); //adaug nodul y la lista vecinilor lui x
+              | }
+              -------------------------
+
+     III. MATRICE DE INCIDENTA
+        --------------------
+          Matricea B de incidenta a unui graf G=(X,U) are urmatoarele elemente:
+               B[i][j] = 1, daca exista arcul (i,j)
+                         -1, daca exista arcul (j,i)
+                         0, altfel.
+
+          Observatii:
+               -> d+(i) = numarul de 1 de pe linia i
+               -> d-(i) = numarul de -1 de pe linia i
+               -> pe fiecare coloana avem exact doua elemete nenule (1 si -1).
+
+              -------------------------
+              | int n,m,b[101][101];
+              |   /*matricea b[n][n] de adiacenta este declarata
+              |     global, deci este initializata cu 0*/
+              | void creareMatInc() {
+              |     int i,j,x,y;
+              |         f>>n>>m;
+              |         for (i=1;i<=m;i++) {
+              |             f>>x>>y; //se citesc m perechi (muchii)
+              |             b[x][y]=1;
+              |             b[y][x]=-1;
+              |         }
+              | }
+              -------------------------
+
+     IV. VECTOR DE ARCE
+          -----------------
+          ->este un vector cu elemente de tip struct in care structura are doua campuri x, y care reprezinta extremitatile unui arc.
+
+          Observatii:
+               ->se pot adauga si alte campuri de exemplu lungimea/costul arcului
+               ->aceasta metoda de reprezentare se foloseste in cazul in care se doreste prelucrarea succesiva a arcelor
+
+
+              -------------------------
+              | int n,m;
+              | struct muchie {
+              |      int x,y;
+              | }v[105];
+              | void creareVectorArce() {
+              |     int i;
+              |     f>>n>>m;
+              |     for (i=1;i<=n;i++)
+              |           f>>v[i].x>>v[i].y;
+              | }
+              -------------------------
+
+     V. MATRICEA DRUMURILOR => ALGORITMUL ROY-WARSHALL
+        -------------------
+          A[i][j] = 1, daca exista drum de la i la j
+                    0, altfel.
+
+              -------------------------
+              | int a[105][105],n,m;
+              |   
+              |  /* se citeste intai A - matricea de adiacenta
+              |    care va deveni matricea drumurilor */
+              | void rw() {
+              |     int i,j,k;
+              |     for (k=1;k<=n;k++)
+              |         for (i=1;i<=n;i++)
+              |             for (j=1;j<=n;j++)
+              |                 if (a[i][j]==0)
+              |                     a[i][j]=a[i][k]*a[k][j];
+              | }
+              -------------------------
+
+++ex
+6
+1020 300
+880 190
+1220 200
+1220 400
+920 420
+830 300
+5
+1 6
+1 3
+4 1
+3 4
+2 6

@@ -1,0 +1,53 @@
+﻿     Graf TURNEU = graf orientat in care intre oricare doua noduri exista un arc si numai unul.
+          -> arcele pot avea orice orientare
+          -> graful turneu este un graf complet
+          -> orice graf turneu contine un drum elementar care trece prin toate nodurile grafului
+          -> pentru orice graf turneu exista un nod astfel incat toate nodurile sunt accesibie din acel nod pe un drum ce contine un arc sau doua arce
+          -> pentru orice nod x dintr-un graf turneu cu n noduri avem:
+               -> d+(x) = d-(x) = n-1 (orice nod este legat de prin arce de celalalte n-1 noduri)
+          -> intr-un graf turneu cu n noduri:
+               -> suma(d+(x)) + suma(d-(x)) = n*(n-1)/2 = numarul de arce
+          -> un graf turneu este un graf conex <=> contine un ciclu elementar care trece prin nodurile grafului
+          -> numarul de grafuri turneu cu n noduri = 2^(n*(n-1)/2). 
+
+             ----------------------
+            | int n,m;
+            |   //n = nr de noduri
+            |   //m = nr de muchii
+            | struct {
+            |     int x,y;
+            | }v[105]; //v - vector de arce
+            | 
+            | void turneu() {
+            |     int i,j,x=0,y=0;
+            |     for (i=1;i<=n && x==1;i++)
+            |         for (j=i+1;j<=n;j++) {
+            |             y=0;
+            |             for (k=1;k<=m;k++)
+            |                 if (v[k].x==i && v[k].y==j)
+            |                     y++;
+            |                 else if (v[k].x==j && v[k].y==i)
+            |                     y++;
+            |                 if (y==0 || y==2) {
+            |                     x=0;
+            |                     break;
+            |                 }
+            |         }
+            |     if (x==1) cout<<"Este graf turneu";
+            |     else cout<<"Nu este graf turneu";
+            | }
+             ----------------------
+
+++ex
+4
+950 200
+1140 320
+1000 440
+870 350
+6
+1 2
+4 1
+1 3
+2 3
+4 3
+4 2

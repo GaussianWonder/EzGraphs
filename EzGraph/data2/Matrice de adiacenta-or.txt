@@ -1,0 +1,11 @@
+int n,m,a[101][101];
+  /*matricea a[n][n] de adiacenta este declarata
+   global, deci este initializata cu 0*/
+void creareMatAd() {
+    int i,j,x,y;
+    f>>n>>m;
+    for (i=1;i<=m;i++) {
+        f>>x>>y; //se citesc m perechi (muchii)
+        a[x][y]=1;
+    }
+}

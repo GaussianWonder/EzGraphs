@@ -1,0 +1,92 @@
+     I. MATRICE DE ADIACENTA
+        --------------------
+          Matricea A de adiacenta a unui graf G = (X,U) este o matrice patratica de dimensiune N (N = |X|) definita astfel:
+               A[i][j] = 1, daca exista muchia [i, j]
+                         0, altfel.
+
+          Elementele de pe diagonala principala a unei matrici de adiacenta ale unui graf neorientate sunt egale cu 0, iar matricea este simetrica fata de diagonala principala.
+               A[i][j] = A[j][i] orice i si j.
+
+          Observatii:
+               -> d(i) = suma de pe linia i=suma de pe coloana i
+               -> i = varf izolat <=> linia i si coloana i au toate elementele 0.
+
+              -------------------------
+              | int n,m,a[101][101];
+              |   /*matricea a[n][n] de adiacenta este declarata
+              |     global, deci este initializata cu 0*/
+              | void creareMatAd() {
+              |     int i,j,x,y;
+              |         f>>n>>m;
+              |         for (i=1;i<=m;i++) {
+              |             f>>x>>y; //se citesc m perechi (muchii)
+              |             a[x][y] = a[y][x] = 1;
+              |         }
+              | }
+              -------------------------
+
+     II. LISTE DE ADIACENTA
+         ------------------
+          ->se specifica pentru fiecare varf i lista vecinilor sai
+
+              -------------------------
+              | int n;
+              | struct nod {
+              |     int inf;
+              |     nod *urm;
+              | }*a[105];
+              | 
+              | void adaug(nod*&p, int x) {  //adaug nodul x la lista p
+              |     nod *c;
+              |     c=new nod;
+              |     c->inf=x;
+              |     c->urm=p;
+              |     p=c;
+              | }
+              | 
+              | void citire() {
+              |     int x,y;
+              |     f>>n;
+              |     while (f>>x>>y) {
+              |         adaug(a[x], y); //adaug nodul y la lista vecinilor lui x
+              |         adaug(a[y], x); //adaug nodul x la lista vecinilor lui y
+              |     }
+              | }
+              -------------------------
+
+     III. VECTORI DE MUCHII
+          -----------------
+          ->este un vector cu elemente de tip struct in care structura are doua campuri x, y care reprezinta extremitatile unei muchii.
+
+          Observatii:
+               ->se pot adauga si alte campuri de exemplu lungimea/costul muchiei
+               ->aceasta metoda de reprezentare se foloseste in cazul in care se doreste prelucrarea succesiva a muchiilor
+
+              -------------------------
+              | int n,m;
+              | struct muchie {
+              |      int x,y;
+              | }v[105];
+              | void creareVectoriMuchii() {
+              |     int i;
+              |     f>>n>>m;
+              |     for (i=1;i<=n;i++)
+              |           f>>v[i].x>>v[i].y;
+              |     //se citesc extremitatile muchiei i
+              | }
+              -------------------------
+
+++ex
+6
+1020 300
+880 190
+1220 200
+1220 400
+920 420
+830 300
+5
+1 6
+1 3
+4 1
+3 4
+2 6

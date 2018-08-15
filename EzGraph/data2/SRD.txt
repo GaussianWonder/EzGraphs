@@ -1,0 +1,7 @@
+int rad,st[105],dr[105];
+void srd(int r) {
+    if (st[r]) srd(st[r]); //autoapel pentru subarborele stang
+    g<<r<<' ';
+    if (dr[r]) srd(dr[r]); //autoapel pentru subarborele drept
+}
+  //apel: srd(rad);

@@ -1,0 +1,79 @@
+     LANT = un sir de varfuri cu proprietatea ca oricare doua varfuri consecutive sunt adiacente.
+          ->lungimea unui lant e data de numarul de muchii care il compun.
+          ->lantul se numeste ELEMENTAR daca toate varfurile care il compun sunt distincte doua cate doua
+          ->in caz contrar, lantul se numeste NEELEMENTAR.
+
+             ----------------------
+            | /* Se afiseaza lanturile elementare de la p la q */
+            | 
+            | int n,m,p,q,a[30][30],x[500],use[30];
+            |   //a - matrice de adiacenta
+            | void afis(int k) {
+            |     int i;
+            |     for (i=1;i<=k;i++)
+            |         g<<x[i]<<' ';
+            |     g<<'\n';
+            | }
+            | 
+            | void bkt(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (!use[i] && a[i][x[k-1]]) {
+            |             use[i]=1;
+            |             x[k]=i;
+            |             if (x[k]!=q) bkt(k+1);
+            |             else afis(k);
+            |             use[i]=0;
+            |         }
+            | }
+            |   //in main(): x[1]=p; use[p]=1;
+            |   //apel: bkt(2);
+             ----------------------
+
+     CICLU = un lant in care extremitatile coincid si toate muchiile sunt distincte doua cate doua.
+          ->un ciclu se numeste ELEMENTAR daca toate varfurile sunt distincte doua cate doua (exceptie facand extremitatile).            ->in caz contrar, ciclul se numeste NEELEMENTAR.
+
+             ----------------------
+            | /* Se afiseaza ciclurile elementare de la p la p */
+            | 
+            | int n,m,p,q,a[30][30],x[500],use[30];
+            |   //a - matrice de adiacenta
+            | void afis(int k) {
+            |     int i;
+            |     for (i=1;i<=k;i++)
+            |         g<<x[i]<<' ';
+            |     g<<x[1]<<'\n';
+            | }
+            | 
+            | void bkt(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (!use[i] && a[i][x[k-1]]) {
+            |             use[i]=1;
+            |             x[k]=i;
+            |             if (a[x[1]][i] && k>=3) afis(k);
+            |             else bkt(k+1);
+            |             use[i]=0;
+            |         }
+            | }
+            |   //in main(): x[1]=p; use[p]=1;
+            |   //apel: bkt(2);
+             ----------------------
+
+     Atentie! Nu conteaza cum incepem numerotarea lantului/ciclului. De exemplu, lantul (1, 6, 7) este echivalent cu (7, 6, 1).
+
+++ex
+6
+760 370
+800 200
+950 290
+1230 210
+1100 350
+1270 400
+6
+1 2
+2 3
+2 4
+4 5
+4 6
+1 3

@@ -1,0 +1,42 @@
+     Varfuri ADIACENTE = varfuri ale unui graf intre care exista o muchie.
+
+     Muchii INCIDENTE = muchii care au o extremitate comuna.
+
+     GRADUL unui varf x = numarul de muchii indicente cu varful x si se noteaza cu d(x).
+	
+             ----------------------
+            | int n,a[105][105],g[105];
+            |   //se da matricea de adiacenta a
+            |   //d - vector de grade
+            | void grad() {
+            |     int i,j;
+            |     for (i=1;i<=n;i++)
+            |         for (j=1;j<=n;j++)
+            |             if (a[i][j]==1) d[i]++;
+            | }
+             ----------------------
+
+     Varf IZOLAT x = un varf care are gradul 0 (d(x)=0).
+     
+     Suma tuturor gradelor varfurilor unui graf = 2*m (unde m este numarul de muchii ale grafului).
+
+     Graf COMPLET = graf cu toate varfurile adiacente si are n(n-1)/2 muchii.
+
+     Numarul de grafuri neorientate cu n varfuri = 2^(n*(n-1)/2).
+
+
+++ex
+7
+830 240
+1020 200
+880 350
+1100 360
+990 440
+1230 230
+1200 440
+5
+1 2
+2 3
+3 1
+2 4
+4 5

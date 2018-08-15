@@ -1,0 +1,49 @@
+﻿     ARBORE CU RADACINA / ARBORESCENTA = o multime finita A de noduri astfel incat:
+          -> exista un nod numit RADACINA
+          -> toate celelalte noduri sunt repartizate in n multimi disjuncte A1, A2, ..., An astfel incat fiecare multime este la randul ei arbore si are un nod adiacent cu radacina
+
+     Nodurile unui arbore cu radacina sunt asezate pe nivele astfel incat radacina se afla pe nivelul 0, fii radacinii pe nivelul 1 etc.
+     Un arbore poate fi transformat intr-un arbore cu radacina prin alegerea arbitrara a unui nod ca radacina.
+
+     DESCENDENT al lui x = nodul de pe lantul ce include radacina si nodul x ce se afla pe un nivel mai mare decat nivelul lui x
+          -> FIU al lui x = DESCENDENT DIRECT al lui x = descendent aflat pe nivelul imediat urmator si adiacent cu x
+
+     ASCENDENT al lui x = nodul de pe lantul ce include radacina si nodul x ce se afla pe un nivel mai mic decat nivelul lui x
+          -> TATA al lui x = ASCENDENT DIRECT al lui x = ascendent aflat pe nivelul anterior si adiacent cu x
+
+     FRUNZA = NOD TERMINAL = nod fara descendenti.
+
+     METODA DE REPREZENTARE:
+     ----------------------
+          -> cu vectorul de tati T unde:
+               -> T[radacina] = 0
+               -> T[i] = tatal nodului i, unde i nu este radacina
+          -> nodurile care nu apar in vectorii de tati sunt frunze.
+
+++ex
+12
+1015 180
+860 270
+1020 270
+1195 270
+760 360
+860 360
+960 360
+1105 360
+1270 360
+860 450
+1015 450
+1185 450
+11
+1 2
+1 3
+1 4
+2 5
+2 6
+2 7
+4 8
+4 9
+6 10
+8 11
+8 12
+	

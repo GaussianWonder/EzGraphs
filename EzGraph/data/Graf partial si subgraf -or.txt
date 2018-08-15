@@ -1,0 +1,5 @@
+     Un graf PARTIAL al grafului G=(X,U) este un graf G'=(X,V), unde V este inclus in U.
+          ->un graf partial se obtine prin eliminarea unor arce(de la 0 la toate).
+
+     Un SUBGRAF al grafului G=(X,U) este un graf G'=(Y,V), unde Y este inclus in X, iar V include toate arcele din U care au ambele extremitati in Y.
+          ->un subgraf se obtine prin eliminarea unor noduri impreuna cu arcele  incidente cu acestea.

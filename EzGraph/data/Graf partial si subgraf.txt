@@ -1,0 +1,7 @@
+     Un graf PARTIAL al grafului G=(X,U) este un graf G'=(X,V), unde V este inclus in U.
+          ->un graf partial se obtine prin eliminarea unor muchii (de la 0 la toate).
+          ->numarul de grafuri partiale ale unui graf G cu n noduri si m muchii este: 2^m.
+
+     Un subgraf al grafului G=(X,U) este un graf G'=(Y,V), unde Y este inclus in X, iar V include toate muchiile din U care au ambele extremitati in Y.
+          ->un subgraf se obtine prin eliminarea unor noduri impreuna cu muchiile  incidente cu acestea.
+          ->numarul de subgrafuri ale unui graf G cu n noduri si m muchii este: 2^(n*(n-1)/2).

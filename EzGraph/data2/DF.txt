@@ -1,0 +1,9 @@
+int n,m,x,viz[105],a[105][105];
+void df(int k) {
+    int i;
+    g<<k<<' ';
+    viz[k]=1;
+    for (i=1;i<=n;i++)
+        if (!viz[i] && a[k][i])
+            df(i);
+}

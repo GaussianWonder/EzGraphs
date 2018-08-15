@@ -1,0 +1,11 @@
+int n,m;
+struct muchie {
+     int x,y;
+}v[105];
+
+void creareVectoriArce() {
+    int i;
+    f>>n>>m;
+    for (i=1;i<=n;i++)
+          f>>v[i].x>>v[i].y;
+}

@@ -1,0 +1,164 @@
+﻿     ARBORE BINAR = arbore cu radacina in care fiecare nod are cel mult doi fii care se numesc:
+          -> subarbore stang
+          -> subarbore drept
+
+
+     MODURI DE REPREZENTARE:
+     ----------------------
+          I) STATICA
+               1) REFERINTE ASCENDENTE
+                    -> vectorul de tati T
+                         -> T[rad] = 0
+                         -> T[i] = tatal lui i, daca i nu este radacina
+                    -> vectorul D
+                         -> D[i] = -1, daca i este descendent stang
+                                    1, daca i este descendent drept
+                                    0, daca i este radacina
+
+               2) REFERINTE DESCENDENTE
+                    -> vectorii ST si DR
+                         -> ST[i] =  descendentul stang al varfului i
+                                     0, daca i nu are descendent stang
+                         -> DR[i] =  descendentul drept al varfului i
+                                     0, daca i nu are descendent drept stang
+
+          II) DINAMICA
+               -> cu ajutorul unei structuri care contine informatia utila din nod, adresa subarborelui stang si adresa subarborelui drept
+               -> pentru creare, la citire se introduc nodurile in preordine, lipsa unui descendent marcandu-se prin valoarea 0
+
+              -------------------------------
+             | struct nod {
+             |     int inf; //informatia nodului curent
+             |     nod *st,*dr; //adresa subarborelui stang, respectiv drept
+             | }*r;
+             | 
+             | void creare(nod *&a) {
+             |     int x;
+             |     f>>x;
+             |     if (x!=0) {
+             |         a=new nod;
+             |         a->inf=x;
+             |         creare(a->st);
+             |         creare(a->dr);
+             |     }
+             |     else a=NULL;
+             | }
+             |   //apel: creare(r);
+              -------------------------------
+
+     ARBORE BINAR PLIN = arbore binar in care toate varfurile terminale se afla pe ultimul nivel.
+          -> numarul de noduri intr-un arbore binar plin = 2^(r+1)-1, unde r = nivelul maxim.
+
+     ARBORE BINAR COMPLET = arbore binar strict cu proprietatea ca varfurile terminale se afla pe ultimul sau penultimul nivel
+
+
+     PARCURGERI:
+     ----------
+          I) PREORDINE ( RSD )
+               -> se afiseaza radacina subarborelui
+               -> se autoapeleaza functia pentru subarborele stang
+               -> se autoapeleaza functia pentru subarborele drept
+
+              -------------------------------
+             | //parcurgerea in preordine cu arborele alocat dinamic
+             | struct nod {
+             |     int inf; //informatia nodului curent
+             |     nod *st,*dr; //adresa subarborelui stang, respectiv drept
+             | }*r;
+             |
+             | void rsd(nod *r) {
+             |     if(r){
+             |         g<<r->inf<<' ';
+             |         rsd(r->st);
+             |         rsd(r->dr);
+             |     }
+             | }
+             |   //apel: rsd(rad); //unde rad = adresa radacinii arborelui
+              -------------------------------
+
+              -------------------------------
+             | //parcurgerea in preordine cu arborele alocat static
+             | int n,rad,dr[1005],st[1005];
+             |		
+             | void rsd(int r) {
+             |     g<<r<<' ';
+             |     if (st[r]) rsd(st[r]);
+             |     if (dr[r]) rsd(dr[r]);
+             | }
+             |   //apel: rsd(rad); //unde rad=radacina arborelui
+              -------------------------------
+
+
+          II) INORDINE ( SRD )
+               -> se autoapeleaza functia pentru subarborele stang
+               -> se afiseaza radacina subarborelui
+               -> se autoapeleaza functia pentru subarborele drept
+
+              -------------------------------
+             | int n,dr[1005],st[1005],rad;
+             |
+             | void srd(int r) {
+             |     if (st[r]) srd(st[r]);
+             |     g<<r<<' ';
+             |     if (dr[r]) srd(dr[r]);
+             | }
+             |   //apel: srd(rad); //unde rad=radacina arborelui
+              -------------------------------
+
+          III) POSTORDINE ( SDR )
+               -> se autoapeleaza functia pentru subarborele stang
+               -> se autoapeleaza functia pentru subarborele drept
+               -> se afiseaza radacina subarborelui.
+
+              -------------------------------
+             | int n,dr[1005],st[1005],rad;
+             |
+             | void sdr(int r) {
+             |     if (st[r]) sdr(st[r]);
+             |     if (dr[r]) sdr(dr[r]);
+             |     g<<r<<' ';
+             | }
+             |   //apel: sdr(rad); //unde rad=radacina arborelui
+              -------------------------------
+
+
+     ADANCIMEA/INALTIMEA arborelui binar = nivelul maxim din arbore.
+
+             ----------------------
+            |   //determina inaltimea arborelui
+            | int rad,st[105],dr[105];
+            |   //se dau vectorii st si dr
+            |
+            | int h(int r) {
+            |     if (!r) return 0;
+            |     else return max(h(st[r]),h(dr[r]))+1;
+            | }
+            |   //apel: h(rad);
+             ----------------------
+
+
+++ex
+10
+1015 180
+860 270
+1195 270
+760 360
+940 360
+1105 360
+1270 360
+860 450
+1015 450
+1185 450
+9
+1 2
+1 3
+2 4
+2 5
+5 8
+5 9
+3 6
+3 7
+6 10
+
+
+

@@ -1,0 +1,3 @@
+﻿     UN GRAF NEORIENTAT este o pereche ordonata de multimi, notata G=(X,U), unde X este o multime finita si nevida de elemente numite varfuri, iar U este o multime de perechi neordonate de elemente din X numite muchii.
+
+     UN GRAF ORIENTAT este o pereche ordonata de multimi, notata G=(X,U), unde X este o multime finita si nevida de elemente numite noduri, iar U este o multime de perechi ordonate de elemente din X numite arce.

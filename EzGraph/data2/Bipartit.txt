@@ -1,0 +1,16 @@
+int n,m,xm[105],ok=1,a[105][105];
+void bipartit(int k) {
+    int i;
+    for (i=1;i<=n;i++)
+        if (a[k][i]==1)
+            if (xm[i]==0) {
+                xm[i]=-xm[k];
+                bipartit(i);
+            }
+            else if (xm[i]==xm[k]) {
+                ok=0;
+                break;
+            }
+}
+  //in main(): xm[1]=1;
+  //apel: bipartit(1);

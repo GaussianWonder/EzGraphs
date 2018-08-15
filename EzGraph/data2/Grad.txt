@@ -1,0 +1,9 @@
+int n,a[105][105],g[105];
+  //se da matricea de adiacenta a
+  //d - vector de grade
+void grad() {
+    int i,j;
+    for (i=1;i<=n;i++)
+        for (j=1;j<=n;j++)
+            if (a[i][j]==1) d[i]++;
+}

@@ -1,0 +1,21 @@
+int n;
+struct nod {
+    int inf; //vecinul
+    nod *urm;
+}*a[105];
+void adaug(nod*&p,int x) {  //adaug nodul x la lista p
+    nod *c;
+    c=new nod;
+    c->inf=x;
+    c->urm=p;
+    p=c;
+}
+
+void citire() {
+   int x,y;
+   f>>n;
+    while (f>>x>>y) {
+        adaug(a[x],y); //adaug nodul y la lista lui x
+        adaug(a[y],x); //adaug nodul x la lista lui y
+    }
+}

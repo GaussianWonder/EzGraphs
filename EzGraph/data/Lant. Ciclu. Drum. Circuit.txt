@@ -1,0 +1,139 @@
+     LANT = un sir de varfuri cu proprietatea ca oricare doua arce consecutive au o extremitate comuna
+          ->lungimea unui lant e data de numarul de arce care il compun.
+
+             ----------------------
+            | /* Se afiseaza lanturile elementare de la p la q */
+            | 
+            | int n,m,p,q,a[30][30],x[500],use[30];
+            |   //a - matrice de adiacenta
+            | void afis(int k) {
+            |     int i;
+            |     for (i=1;i<=k;i++)
+            |         g<<x[i]<<' ';
+            |     g<<'\n';
+            | }
+            | 
+            | void bkt(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (!use[i] && (a[i][x[k-1]] || a[x[k-1]][i]) {
+            |             use[i]=1;
+            |             x[k]=i;
+            |             if (x[k]!=q) bkt(k+1);
+            |             else afis(k);
+            |             use[i]=0;
+            |         }
+            | }
+            |   //in main(): x[1]=p; use[p]=1;
+            |   //apel: bkt(2);
+             ----------------------
+
+     DRUM = un lant in care toate arcele au aceeasi orientare
+          ->drumul se numeste ELEMENTAR daca toate varfurile care il compun sunt distincte doua cate doua
+          ->in caz contrar, drumul se numeste NEELEMENTAR.
+
+             ----------------------
+            | /* Se afiseaza drumurile elementare de la p la q */
+            | 
+            | int n,m,p,q,a[30][30],x[500],use[30];
+            |   //a - matrice de adiacenta
+            | void afis(int k) {
+            |     int i;
+            |     for (i=1;i<=k;i++)
+            |         g<<x[i]<<' ';
+            |     g<<'\n';
+            | }
+            | 
+            | void bkt(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (!use[i] && a[x[k-1]][i]) {
+            |             use[i]=1;
+            |             x[k]=i;
+            |             if (x[k]!=q) bkt(k+1);
+            |             else afis(k);
+            |             use[i]=0;
+            |         }
+            | }
+            |   //in main(): x[1]=p; use[p]=1;
+            |   //apel: bkt(2);
+             ----------------------
+
+     CICLU = un lant in care extremitatile coincid si toate arcele sunt distincte doua cate doua.
+
+             ----------------------
+            | /* Se afiseaza ciclurile elementare de la p la p */
+            | 
+            | int n,m,p,q,a[30][30],x[500],use[30];
+            |   //a - matrice de adiacenta
+            | void afis(int k) {
+            |     int i;
+            |     for (i=1;i<=k;i++)
+            |         g<<x[i]<<' ';
+            |     g<<x[1]<<'\n';
+            | }
+            | 
+            | void bkt(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (!use[i] && (a[i][x[k-1]] || a[x[k-1]][i]) {
+            |             use[i]=1;
+            |             x[k]=i;
+            |             if (a[x[1]][i] || a[i][x[1]]) afis(k);
+            |             else bkt(k+1);
+            |             use[i]=0;
+            |         }
+            | }
+            |   //in main(): x[1]=p; use[p]=1;
+            |   //apel: bkt(2);
+             ----------------------
+
+     CIRCUIT = drum in care extremitatile coincid si toate arcele sunt distincte doua cate doua.
+          ->un circuit se numeste ELEMENTAR daca toate varfurile sunt distincte doua cate doua (exceptie facand extremitatile), si NEELEMENTAR in caz contrar.
+
+             ----------------------
+            | /* Se afiseaza circuitele elementare de la p la p */
+            | 
+            | int n,m,p,q,a[30][30],x[500],use[30];
+            |   //a - matrice de adiacenta
+            | void afis(int k) {
+            |     int i;
+            |     for (i=1;i<=k;i++)
+            |         g<<x[i]<<' ';
+            |     g<<x[1]<<'\n';
+            | }
+            | 
+            | void bkt(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (!use[i] && a[x[k-1]][i]) {
+            |             use[i]=1;
+            |             x[k]=i;
+            |             if (a[i][x[1]]) afis(k);
+            |             else bkt(k+1);
+            |             use[i]=0;
+            |         }
+            | }
+            |   //in main(): x[1]=p; use[p]=1;
+            |   //apel: bkt(2);
+             ----------------------
+
+     Atentie! Nu conteaza cum incepem numerotarea lantului/ciclului, dar conteaza numerotarea drumului/circuitului. De exemplu, lantul (1, 6, 7) este echivalent cu (7, 6, 1), dar drumul (5,8,2,9) nu este echivalent intotdeauna cu (9,2,8,5).
+
+++ex
+6
+760 370
+800 200
+1080 210
+1080 350
+1220 245
+1270 400
+8
+2 1
+2 3
+1 3
+6 1
+5 6
+3 5
+4 3
+5 4

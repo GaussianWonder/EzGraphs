@@ -1,0 +1,95 @@
+     Graf orientat CONEX = graf in care pentru oricare doua varfuri distincte ale sale exista un lant care le leaga.
+
+     O COMPONENTA CONEXA a grafului G=(X,U) este un subgraf C=(X1,U1) conex al lui G, maximal cu aceasta proprietate (nu exista niciun lant in G care sa uneasca un varf din multimea X1 cu un varf din multimea X-X1.
+
+             ----------------------
+            | int n,m,viz[105],a[105][105];
+            | 
+            | void df(int k,int nr) {
+            |     int i;
+            |     viz[k]=nr;
+            |     for (i=1;i<=n;i++)
+            |         if (!viz[i] && a[k][i]) //nu e vizitat si formeaza arcul (k,i)
+            |             df(i, nr);
+            | }
+            | 
+            | void compConexe() {
+            |     int nr=0,x, y,i;
+            |     f>>n;
+            |     while (f>>x>>y)
+            |         a[x][y]=1;
+            |     for (i=1;i<=n;i++) {
+            |         if (!viz[i]) {
+            |             nr++;
+            |             df(i,nr); //reluam parcurgerea pt fiecare nod nevizitat
+            |         }
+            |     }
+            |     g<<nr<<'\n';
+            |     for (i=1;i<=nr;i++) {
+            |         for(j=1;j<=n;j++)
+            |             if (viz[j]==i)
+            |                 g<<j<<' ';
+            |         g<<'\n';
+            |     }
+            | }
+             ----------------------
+
+     Graf orientat TARE CONEX = un graf orientat in care |X|=1 sau in care exista drum intre oricare doua varfuri distincte x si y.
+
+     COMPONENTA TARE CONEXA = subgraf tare conex maximal in raport cu aceasta proprietate.
+          -> un exemplu simplu de graf tare conex este cel asociat circulatiei rutiere (aceasta trebuie sa permita accesul dus-intors intre orice 2 puncte, desi poate contine si strazi cu sens unic).
+          -> matricea drumurilor asociata unui graf conex are toate elementele egale cu 1
+             ----------------------
+            | int a[105][105],n,m,nr,use[105];
+            | 
+            | int compTareConexe() {
+            |     int i,j,k,x,y;
+            |     cin>>n>>m;
+            |     for (i=1;i<=m;i++) {
+            |         cin>>x>>y;
+            |         a[x][y]=1;
+            |     }
+            |     //se construieste matricea drumurilor
+            |     for (k=1;k<=n;k++)
+            |         for (i=1;i<=n;i++)
+            |             for (j=1;j<=n;j++)
+            |                 if (a[i][j]==0)
+            |                     a[i][j]=a[i][k]*a[k][j];
+            |     //se determina componentele tare conexe
+            |     for (i=1;i<=n;i++)
+            |         if (!use[i]) {
+            |             nr++;
+            |             for (j=1;j<=n;j++)
+            |                 if (a[i][j]==1 && a[j][i]==1 && j!=i)
+            |                     use[j]=nr;
+            |         }
+            |     //se afiseaza componentele tare conexe
+            |     for (i=1;i<=nr;i++) {
+            |         for (j=1;j<=n;j++)
+            |             if (use[j]==i)
+            |                 cout<<j<<' ';
+            |         cout<<'\n';
+            |     }
+            | }
+             ----------------------
+
+++ex
+8
+950 210
+1240 200
+1310 420
+785 220
+960 420
+1160 410
+1080 290
+785 410
+9
+4 8
+8 4
+5 1
+7 5
+1 7
+2 7
+2 6
+3 6
+6 3

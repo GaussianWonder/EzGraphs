@@ -1,0 +1,25 @@
+int n,m;
+  //n = nr de noduri
+  //m = nr de muchii
+struct {
+    int x,y;
+}v[105]; //v - vector de arce
+
+void turneu() {
+    int i,j,x=0,y=0;
+    for (i=1;i<=n && x==1;i++)
+        for (j=i+1;j<=n;j++) {
+            y=0;
+            for (k=1;k<=m;k++)
+                if (v[k].x==i && v[k].y==j)
+                    y++;
+                else if (v[k].x==j && v[k].y==i)
+                    y++;
+                if (y==0 || y==2) {
+                    x=0;
+                    break;
+                }
+        }
+    if (x==1) cout<<"Este graf turneu";
+    else cout<<"Nu este graf turneu";
+}

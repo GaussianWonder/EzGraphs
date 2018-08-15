@@ -1,0 +1,66 @@
+﻿     CICLU HAMILTONIAN = un ciclu elementar al unui graf G=(X,U) care contine toate varfurile grafului.
+          -> un ciclu hamiltonian are lugimea n = card(X).
+
+     GRAF HAMILTONIAN = graf care contine un ciclu hamiltonian.
+          -> un graf hamiltonian are cel  putin 3 varfuri
+          -> un graf complet este hamiltonian
+          -> TEOREMA LUI DIRAC: Daca G=(X,U) este un graf neorientat cu n>=3 astfel incat d(x)>=n/2 oricare ar fi x din X, atunci graful este hamiltonian
+               -> aceasta conditie este suficienta, dar nu necesara ca un graf sa fie hamiltonian
+
+     LANT HAMILTONIAN = lant elementar care contine toate varfurile grafului.
+
+
+             ----------------------
+            |   //generarea unui ciclu hamiltonian
+            | int n,m,viz[15],x[15],ok,a[105][105];
+            |   //a - matrice de adiacenta
+            |   //x - ciclul
+            | void afis(int k) {
+            |     int i;
+            |     ok=1;
+            |     g<<1<<'\n';
+            |     for (i=1;i<=k;i++)
+            |         g<<x[i]<<' ';
+            |     g<<x[1]<<'\n'; //capat de ciclu
+            |     exit(0); //iesire fortata din program
+            | }
+            | 
+            | void bkt(int k) {
+            |     int i;
+            |     for (i=1;i<=n;i++)
+            |         if (a[i][x[k-1]])
+            |             if (!viz[i]) {
+            |                 x[k]=i;
+            |                 viz[i]=1;
+            |                 if (k<n)
+            |                     bkt(k+1);
+            |                 else if (a[x[1]][i]) afis(k);
+            |                    /*daca exista muchie intre primul
+            |                      si ultimul (ca sa fie ciclu)*/
+            |                 viz[i]=0;
+            |             }
+            | }
+            |   //in main(): viz[1]=1; x[1]=1;
+            |   //apel: bkt(2);
+             ----------------------
+
+++ex
+7
+910 250
+1060 190
+1210 250
+1210 380
+1060 440
+1060 315
+910 380
+10
+1 2
+1 6
+1 7
+2 3
+2 6
+3 4
+4 6
+4 5
+5 6
+5 7

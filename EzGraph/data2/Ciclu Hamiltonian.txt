@@ -1,0 +1,30 @@
+int n,m,viz[15],x[15],ok,a[105][105];
+  //a - matrice de adiacenta
+  //x - ciclul
+void afis(int k) {
+    int i;
+    ok=1;
+    g<<1<<'\n';
+    for (i=1;i<=k;i++)
+        g<<x[i]<<' ';
+    g<<x[1]<<'\n';
+    exit(0);
+}
+
+void bkt(int k) {
+    int i;
+    for (i=1;i<=n;i++)
+        if (a[i][x[k-1]])
+            if (!viz[i]) {
+                x[k]=i;
+                viz[i]=1;
+                if (k<n)
+                    bkt(k+1);
+                else if (a[x[1]][i]) afis(k);
+                   /*daca exista muchie intre primul 
+                     si ultimul (ca sa fie ciclu)*/
+                viz[i]=0;
+            }
+}
+  //in main(): viz[1]=1; x[1]=1;
+  //apel: bkt(2);

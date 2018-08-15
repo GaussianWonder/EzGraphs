@@ -1,0 +1,28 @@
+int a[105][105],n,m,nr,use[105];
+
+int compTareConexe() {
+    int i,j,k,x,y;
+    cin>>n>>m;
+    for (i=1;i<=m;i++) {
+        cin>>x>>y;
+        a[x][y]=1;
+    }
+    for (k=1;k<=n;k++)
+        for (i=1;i<=n;i++)
+            for (j=1;j<=n;j++)
+                if (a[i][j]==0)
+                    a[i][j]=a[i][k]*a[k][j];
+    for (i=1;i<=n;i++)
+        if (!use[i]) {
+            nr++;
+            for (j=1;j<=n;j++)
+                if (a[i][j]==1 && a[j][i]==1 && j!=i)
+                    use[j]=nr;
+        }
+    for (i=1;i<=nr;i++) {
+        for (j=1;j<=n;j++)
+            if (use[j]==i)
+                cout<<j<<' ';
+        cout<<'\n';
+    }
+}

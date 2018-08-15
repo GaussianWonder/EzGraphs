@@ -1,0 +1,13 @@
+int n,a[105][105],d[105];
+  //se da matricea de adiacenta a
+  //d1 - vector de grade exterioara (+)
+  //d2 - vector de grade interioare (-)
+void grad() {
+    int i,j;
+    for (i=1;i<=n;i++)
+        for (j=1;j<=n;j++)
+            if (a[i][j]==1) {
+                d1[i]++;
+                d2[j]++;
+            }
+}

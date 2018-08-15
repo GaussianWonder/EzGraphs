@@ -1,0 +1,29 @@
+int n,m,viz[105],a[105][105];
+
+void df(int k,int nr) {
+    int i;
+    viz[k]=nr;
+    for (i=1;i<=n;i++)
+        if (!viz[i] && a[k][i]) //i nu e vizitat si e vecin cu k
+            df(i,nr);
+}
+
+void compConexe() {
+    int nr=0, x, y;
+    f>>n;
+    while (f>>x>>y)
+        a[x][y]=a[y][x]=1;
+    for (i=1;i<=n;i++) {
+        if (!viz[i]) {
+            nr++;
+            df(i,nr); //reluam parcurgerea pt fiecare nod nevizitat
+        }
+    }
+    g<<nr<<'\n'; //numarul de componente conexe
+    for (i=1;i<=nr;i++) {
+        for(j=1;j<=n;j++)
+            if (viz[j]==i)
+                g<<j<<' ';
+        g<<'\n';
+    }
+}

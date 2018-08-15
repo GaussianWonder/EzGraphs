@@ -1,0 +1,31 @@
+﻿     ARBORE = graf conex si fara cicluri.
+          -> orice arbore cu n varfuri are n-1 muchii
+
+     TEOREME DE CARACTERIZARE:
+     ------------------------
+          Fie G=(x,U) un graf neorientat. Urmatoarele afirmatii sunt echivalente:
+               1. G-arbore
+               2. G-conex cu n-1 muchii
+               3. G-aciclic cu n-1 muchii
+               4. G-conex minimal cu apeasta proprietate (daca se elimina o muchie nu mai este conex)
+               5. G-aciclic maximal cu aceasta proprietate (daca se adauga o muchie, se formeaza un ciclu)
+               6. Oricare doua varfuri distincte din G sunt unite printr-un lant unic.
+
+++ex
+8
+820 190
+940 305
+1140 270
+1280 280
+1040 430
+840 420
+1225 425
+975 195
+7
+1 2
+2 6
+2 5
+5 7
+8 3
+3 4
+2 3

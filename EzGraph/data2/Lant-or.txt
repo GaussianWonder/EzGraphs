@@ -1,0 +1,24 @@
+/* Se afiseaza lanturile elementare de la p la q */
+
+int n,m,p,q,a[30][30],x[500],use[30];
+  //a - matrice de adiacenta
+void afis(int k) {
+    int i;
+    for (i=1;i<=k;i++)
+        g<<x[i]<<' ';
+    g<<'\n';
+}
+
+void bkt(int k) {
+    int i;
+    for (i=1;i<=n;i++)
+        if (!use[i] && (a[i][x[k-1]] || a[x[k-1]][i]) {
+            use[i]=1;
+            x[k]=i;
+            if (x[k]!=q) bkt(k+1);
+            else afis(k);
+            use[i]=0;
+        }
+}
+  //in main(): x[1]=p; use[p]=1;
+  //apel: bkt(2);

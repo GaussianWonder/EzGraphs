@@ -1,0 +1,26 @@
+﻿     Dupa ce ai selectat una dintre optiunile dispuse sub forma de cerc, ai urmatoarele posibilitati:
+          ->ADD POINT:
+            ---------
+               ->da click pe ecran pentru a adauga un nou nod;
+
+          ->ADD EDGE:
+            --------
+               ->selecteaza doua noduri pentru a creea o muchie intre cele doua noduri;
+               ->nodul selectat va aparea rosu, mai apasa o data pentru a anula selectia;
+
+          ->DELETE POINT:
+            ------------
+               ->da click pe un nod pentru a-l sterge;
+               ->ATENTIE! vor disparea si muchiile incidente cu acesta;
+
+          ->DELETE EDGE:
+            -----------
+               -da click pe o muchie (devine rosie) pentru a o sterge;
+
+          ->MOVE:
+            ----
+              ->tine apasat pe un nod si muta cursorul pentru a muta nodul
+
+          ->DELETE GRAPH:
+            ------------
+              ->apasa pe buton si va sterge graful (muchii si noduri).

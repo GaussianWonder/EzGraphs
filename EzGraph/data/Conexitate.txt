@@ -1,0 +1,55 @@
+     Un graf neorientat este CONEX daca pentru oricare doua varfuri distincte ale sale exista un lant care le leaga.
+
+     O COMPONENTA CONEXA a grafului G=(X,U) este un subgraf C=(X1,U1) conex al lui G, maximal cu aceasta proprietate (nu exista niciun lant in G care sa uneasca un varf din multimea X1 cu un varf din multimea X-X1.
+
+             ----------------------
+            | int n,m,viz[105],a[105][105];
+            | 
+            | void df(int k,int nr) {
+            |     int i;
+            |     viz[k]=nr;
+            |     for (i=1;i<=n;i++)
+            |         if (!viz[i] && a[k][i]) //i nu e vizitat si e vecin cu k
+            |             df(i, nr);
+            | }
+            | 
+            | void compConexe() {
+            |     int nr=0, x, y;
+            |     f>>n;
+            |     while (f>>x>>y)
+            |         a[x][y]=a[y][x]=1;
+            |     for (i=1;i<=n;i++) {
+            |         if (!viz[i]) {
+            |             nr++;
+            |             df(i,nr); //reluam parcurgerea pt fiecare nod nevizitat
+            |         }
+            |     }
+            |     g<<nr<<'\n'; //numarul de componente conexe
+            |     for (i=1;i<=nr;i++) {
+            |         for(j=1;j<=n;j++)
+            |             if (viz[j]==i)
+            |                 g<<j<<' ';
+            |         g<<'\n';
+            |     }
+            | }
+             ----------------------
+
+++ex
+8
+760 220
+1240 215
+780 420
+1020 200
+1110 320
+1230 420
+860 320
+1000 430
+7
+1 7
+7 3
+4 5
+4 8
+4 2
+5 2
+5 6
+ 
