@@ -2,7 +2,7 @@
 PAS 1 - DOWNLOAD
   1) Varianta exportata a aplicatiei poate fi luata de pe one drive:
   
-		[LINK]	-	Uploading
+		https://1drv.ms/f/s!ArKYQdcc4mqdiscqH1sH9YYVwCbT8A
 	Link-ul trimite catre un folder care contine toate variantele exportate ale fiecarui modul: (Creare lectie, Creare tema, Creare test, EzGraphs - Proiect intreg)
 	Folderele sunt denumite dupa regula:
   
